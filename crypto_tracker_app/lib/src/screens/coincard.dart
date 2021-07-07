@@ -36,7 +36,7 @@ class _CoinCardState extends State<CoinCard> {
       child: Padding(
         padding: const EdgeInsets.only(top: 8, bottom: 16),
         child: Container(
-          height: (MediaQuery.of(context).size.height / 5),
+          height: (MediaQuery.of(context).size.height / 7),
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
@@ -116,7 +116,7 @@ class _CoinCardState extends State<CoinCard> {
                   ),
                 ),
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(

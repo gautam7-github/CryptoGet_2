@@ -20,7 +20,7 @@ class CryptoApp extends StatelessWidget {
     return GetMaterialApp(
       defaultTransition: Transition.cupertino,
       debugShowCheckedModeBanner: false,
-      title: "CryptoGet 2",
+      title: "CryptoGet",
       home: WelcomeScreen(),
     );
   }

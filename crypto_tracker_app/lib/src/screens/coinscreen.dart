@@ -4,6 +4,7 @@ import 'package:crypto_tracker_app/src/screens/settingscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'coincard.dart';
 
 class CoinPage extends StatefulWidget {
@@ -23,7 +24,14 @@ class _CoinPageState extends State<CoinPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("CryptoGet"),
+        title: Text(
+          "CryptoGet".toUpperCase(),
+          style: GoogleFonts.raleway(
+            textStyle: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
         actions: [
           IconButton(
             onPressed: () async {
