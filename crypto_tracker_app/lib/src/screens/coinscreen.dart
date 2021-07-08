@@ -3,7 +3,6 @@ import 'package:crypto_tracker_app/src/network/network.dart';
 import 'package:crypto_tracker_app/src/screens/settingscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'coincard.dart';
@@ -25,6 +24,7 @@ class _CoinPageState extends State<CoinPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        brightness: Brightness.light,
         title: Text(
           "CryptoGet".toUpperCase(),
           style: GoogleFonts.raleway(

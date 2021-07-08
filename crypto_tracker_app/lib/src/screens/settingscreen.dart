@@ -17,6 +17,7 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   var _symbol = settingService.symbol;
   var _currency = settingService.currency;
+  var _numController = TextEditingController(text: "25");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -135,6 +136,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                     ],
                   ),
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    fillColor: Colors.white,
+                  ),
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                  keyboardAppearance: Brightness.light,
+                  cursorColor: Colors.white,
+                  controller: _numController,
+                  keyboardType: TextInputType.number,
+                  onSubmitted: (num) {
+                    print(num);
+                  },
+                  onTap: () {
+                    _numController.clear();
+                  },
                 ),
                 Container(
                   margin: EdgeInsets.all(8),
