@@ -24,7 +24,7 @@ class _CoinPageState extends State<CoinPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        brightness: Brightness.light,
+        brightness: Brightness.dark,
         title: Text(
           "CryptoGet".toUpperCase(),
           style: GoogleFonts.raleway(

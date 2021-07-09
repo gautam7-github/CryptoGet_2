@@ -1,3 +1,4 @@
+import 'package:crypto_tracker_app/src/model/credits.dart';
 import 'package:crypto_tracker_app/src/model/settings.dart';
 import 'package:crypto_tracker_app/src/network/network.dart';
 import 'package:currency_picker/currency_picker.dart';
@@ -14,10 +15,11 @@ class SettingsScreen extends StatefulWidget {
   _SettingsScreenState createState() => _SettingsScreenState();
 }
 
+double? howM = 25;
+
 class _SettingsScreenState extends State<SettingsScreen> {
   var _symbol = settingService.symbol;
   var _currency = settingService.currency;
-  var _numController = TextEditingController(text: "25");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,12 +38,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: SafeArea(
         child: Container(
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            child: ListView(
+              itemExtent: 100,
+              physics: BouncingScrollPhysics(),
+              shrinkWrap: true,
               children: [
+                currencySelector(
+                  context,
+                ),
                 Container(
-                  margin: EdgeInsets.all(8),
+                  width: MediaQuery.of(context).size.width,
                   padding: EdgeInsets.all(8),
+                  margin: EdgeInsets.all(8),
                   decoration: BoxDecoration(
                     color: Color(0xFF121212),
                     border: Border.all(color: Colors.grey),
@@ -49,114 +57,42 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       Radius.circular(12),
                     ),
                   ),
-                  height: MediaQuery.of(context).size.height / 7,
-                  width: MediaQuery.of(context).size.width,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Selected Currency",
+                        "How Many ?",
                         style: GoogleFonts.raleway(
-                          textStyle: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
+                          textStyle: TextStyle(color: Colors.white),
                         ),
                       ),
                       MaterialButton(
-                        highlightColor: Colors.transparent,
-                        splashColor: Colors.transparent,
                         onPressed: () {
-                          HapticFeedback.heavyImpact();
-                          setState(
-                            () {
-                              showCurrencyPicker(
-                                context: context,
-                                showFlag: true,
-                                theme: CurrencyPickerThemeData(
-                                  backgroundColor: Colors.white,
-                                  titleTextStyle: TextStyle(
-                                    color: Colors.black,
-                                  ),
-                                  subtitleTextStyle: TextStyle(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                currencyFilter: [
-                                  'USD',
-                                  'INR',
-                                  'JPY',
-                                  'EUR',
-                                  'GBP',
-                                  'AUD',
-                                  'CAD',
-                                ],
-                                physics: BouncingScrollPhysics(),
-                                onSelect: (currency) {
-                                  print(currency.code);
-                                  setState(
-                                    () {
-                                      _currency = settingService.currency =
-                                          currency.code;
-                                      _symbol = settingService.symbol =
-                                          currency.symbol;
-                                    },
-                                  );
-                                },
-                              );
-                            },
-                          );
+                          setState(() {
+                            Get.defaultDialog(
+                                backgroundColor: Color(0xFF202020),
+                                title: "Hi",
+                                content: NumSlider(),
+                                actions: [
+                                  IconButton(
+                                      onPressed: () {
+                                        Get.back();
+                                        setState(() {});
+                                      },
+                                      icon: Icon(
+                                        Icons.chevron_left,
+                                      ))
+                                ]);
+                          });
                         },
-                        child: Row(
-                          textBaseline: TextBaseline.alphabetic,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.baseline,
-                          children: [
-                            Text(
-                              "$_symbol ",
-                              style: GoogleFonts.dmSans(
-                                textStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                ),
-                              ),
-                            ),
-                            Text(
-                              " $_currency",
-                              style: GoogleFonts.dmSans(
-                                textStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ),
-                          ],
+                        child: Text(
+                          howM!.toInt().toString(),
+                          style: TextStyle(color: Colors.white, fontSize: 32),
                         ),
                       ),
                     ],
                   ),
-                ),
-                TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
-                    ),
-                    fillColor: Colors.white,
-                  ),
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                  keyboardAppearance: Brightness.light,
-                  cursorColor: Colors.white,
-                  controller: _numController,
-                  keyboardType: TextInputType.number,
-                  onSubmitted: (num) {
-                    print(num);
-                  },
-                  onTap: () {
-                    _numController.clear();
-                  },
                 ),
                 Container(
                   margin: EdgeInsets.all(8),
@@ -206,45 +142,135 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ),
                 ),
-                Container(
-                  child: Column(
-                    children: [
-                      RichText(
-                        text: TextSpan(
-                          text: "ProdiGinix",
-                          children: [
-                            TextSpan(
-                              text: "™",
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                          style: GoogleFonts.limelight(
-                            textStyle: TextStyle(
-                              color: Color(0xFFE9A664),
-                              fontSize: 24,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Text(
-                        "Software. To The Moon.",
-                        style: GoogleFonts.antic(
-                          textStyle: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                ProdiGinix(),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget currencySelector(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(8),
+      padding: EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: Color(0xFF121212),
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.all(
+          Radius.circular(12),
+        ),
+      ),
+      height: MediaQuery.of(context).size.height / 7,
+      width: MediaQuery.of(context).size.width,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            "Selected Currency",
+            style: GoogleFonts.raleway(
+              textStyle: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+              ),
+            ),
+          ),
+          MaterialButton(
+            highlightColor: Colors.transparent,
+            splashColor: Colors.transparent,
+            onPressed: () {
+              HapticFeedback.heavyImpact();
+              setState(
+                () {
+                  showCurrencyPicker(
+                    context: context,
+                    showFlag: true,
+                    theme: CurrencyPickerThemeData(
+                      backgroundColor: Colors.white,
+                      titleTextStyle: TextStyle(
+                        color: Colors.black,
+                      ),
+                      subtitleTextStyle: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                    currencyFilter: [
+                      'USD',
+                      'INR',
+                      'JPY',
+                      'EUR',
+                      'GBP',
+                      'AUD',
+                      'CAD',
+                    ],
+                    physics: BouncingScrollPhysics(),
+                    onSelect: (currency) {
+                      print(currency.code);
+                      setState(
+                        () {
+                          _currency = settingService.currency = currency.code;
+                          _symbol = settingService.symbol = currency.symbol;
+                        },
+                      );
+                    },
+                  );
+                },
+              );
+            },
+            child: Row(
+              textBaseline: TextBaseline.alphabetic,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              children: [
+                Text(
+                  "$_symbol ",
+                  style: GoogleFonts.dmSans(
+                    textStyle: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+                Text(
+                  " $_currency",
+                  style: GoogleFonts.dmSans(
+                    textStyle: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class NumSlider extends StatefulWidget {
+  NumSlider({Key? key}) : super(key: key);
+
+  @override
+  _NumSliderState createState() => _NumSliderState();
+}
+
+class _NumSliderState extends State<NumSlider> {
+  @override
+  Widget build(BuildContext context) {
+    return Slider(
+      value: howM!,
+      min: 0,
+      max: 100,
+      onChanged: (val) {
+        print(val.toInt());
+        setState(() {
+          howM = val;
+        });
+      },
     );
   }
 }
