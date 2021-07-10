@@ -57,33 +57,48 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       Radius.circular(12),
                     ),
                   ),
-                  child: Column(
+                  child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
                         "How Many ?",
                         style: GoogleFonts.raleway(
-                          textStyle: TextStyle(color: Colors.white),
+                          textStyle: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
                       MaterialButton(
                         onPressed: () {
                           setState(() {
                             Get.defaultDialog(
-                                backgroundColor: Color(0xFF202020),
-                                title: "Hi",
-                                content: NumSlider(),
-                                actions: [
-                                  IconButton(
-                                      onPressed: () {
-                                        Get.back();
-                                        setState(() {});
-                                      },
-                                      icon: Icon(
-                                        Icons.chevron_left,
-                                      ))
-                                ]);
+                              backgroundColor: Color(0xFF202020),
+                              radius: 8,
+                              titleStyle: GoogleFonts.raleway(
+                                textStyle: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              title: "Select Number of Cryptos",
+                              buttonColor: Colors.white,
+                              content: NumSlider(),
+                              actions: [
+                                IconButton(
+                                  onPressed: () {
+                                    Get.back();
+                                    setState(() {});
+                                  },
+                                  icon: Icon(
+                                    Icons.check_circle_outline_rounded,
+                                    color: Colors.green,
+                                    size: 32,
+                                  ),
+                                ),
+                              ],
+                            );
                           });
                         },
                         child: Text(
@@ -265,6 +280,8 @@ class _NumSliderState extends State<NumSlider> {
       value: howM!,
       min: 0,
       max: 100,
+      label: "${howM!.toStringAsFixed(0)}",
+      divisions: 20,
       onChanged: (val) {
         print(val.toInt());
         setState(() {

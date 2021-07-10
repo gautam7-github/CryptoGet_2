@@ -49,7 +49,9 @@ class _CoinPageState extends State<CoinPage> {
               Get.to(
                 () => SettingsScreen(),
               );
-              setState(() {});
+              setState(() {
+                coinList;
+              });
             },
             icon: Icon(
               Icons.more_vert_rounded,
