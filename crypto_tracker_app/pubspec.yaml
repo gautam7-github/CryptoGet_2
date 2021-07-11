@@ -23,6 +23,15 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_native_splash: ^1.2.0
+
+flutter_native_splash:
+  android: true
+  color: "#121212"
+  image: assets/splashImg.png
+  fullscreen: true
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/

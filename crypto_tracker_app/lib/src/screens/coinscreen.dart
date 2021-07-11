@@ -54,7 +54,7 @@ class _CoinPageState extends State<CoinPage> {
               });
             },
             icon: Icon(
-              Icons.more_vert_rounded,
+              Icons.settings,
               color: Colors.white,
             ),
           ),

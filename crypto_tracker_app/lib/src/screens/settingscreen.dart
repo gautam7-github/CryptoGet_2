@@ -71,39 +71,49 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                       ),
                       MaterialButton(
+                        highlightColor: Colors.transparent,
+                        splashColor: Colors.transparent,
                         onPressed: () {
-                          setState(() {
-                            Get.defaultDialog(
-                              backgroundColor: Color(0xFF202020),
-                              radius: 8,
-                              titleStyle: GoogleFonts.raleway(
-                                textStyle: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              title: "Select Number of Cryptos",
-                              buttonColor: Colors.white,
-                              content: NumSlider(),
-                              actions: [
-                                IconButton(
-                                  onPressed: () {
-                                    Get.back();
-                                    setState(() {});
-                                  },
-                                  icon: Icon(
-                                    Icons.check_circle_outline_rounded,
-                                    color: Colors.green,
-                                    size: 32,
+                          HapticFeedback.vibrate();
+                          setState(
+                            () {
+                              Get.defaultDialog(
+                                backgroundColor: Color(0xFF202020),
+                                radius: 8,
+                                titleStyle: GoogleFonts.raleway(
+                                  textStyle: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.white,
                                   ),
                                 ),
-                              ],
-                            );
-                          });
+                                title: "Select Number of Cryptos",
+                                buttonColor: Colors.white,
+                                content: NumSlider(),
+                                actions: [
+                                  IconButton(
+                                    onPressed: () {
+                                      Get.back();
+                                      setState(() {});
+                                    },
+                                    icon: Icon(
+                                      Icons.check_circle_outline_rounded,
+                                      color: Colors.green,
+                                      size: 32,
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
                         },
                         child: Text(
-                          howM!.toInt().toString(),
-                          style: TextStyle(color: Colors.white, fontSize: 32),
+                          settingService.howMany!.toInt().toString(),
+                          style: GoogleFonts.antic(
+                            textStyle: TextStyle(
+                              color: Colors.white,
+                              fontSize: 32,
+                            ),
+                          ),
                         ),
                       ),
                     ],
@@ -135,7 +145,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             isDismissible: true,
                             messageText: Center(
                               child: Text(
-                                "Aukaat Hai ?",
+                                "Portfolio rakhne ki aukaat hai ?",
                                 style: GoogleFonts.raleway(
                                   textStyle: TextStyle(),
                                   color: Colors.white,
@@ -276,18 +286,26 @@ class NumSlider extends StatefulWidget {
 class _NumSliderState extends State<NumSlider> {
   @override
   Widget build(BuildContext context) {
-    return Slider(
-      value: howM!,
-      min: 0,
-      max: 100,
-      label: "${howM!.toStringAsFixed(0)}",
-      divisions: 20,
-      onChanged: (val) {
-        print(val.toInt());
-        setState(() {
-          howM = val;
-        });
-      },
+    return SliderTheme(
+      data: SliderThemeData(
+        showValueIndicator: ShowValueIndicator.always,
+        valueIndicatorColor: Colors.deepOrange[600],
+        thumbColor: Colors.deepOrange[800],
+        activeTrackColor: Colors.deepOrange[800],
+        inactiveTrackColor: Colors.white38,
+      ),
+      child: Slider(
+        value: settingService.howMany!.toDouble(),
+        min: 0,
+        max: 100,
+        label: "${settingService.howMany!.toStringAsFixed(0)}",
+        onChanged: (val) {
+          print(val.toInt());
+          setState(() {
+            settingService.howMany = val.toInt();
+          });
+        },
+      ),
     );
   }
 }
