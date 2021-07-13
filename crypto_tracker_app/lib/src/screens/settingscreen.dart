@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 class SettingsScreen extends StatefulWidget {
   SettingsScreen({Key? key}) : super(key: key);
@@ -46,126 +47,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 currencySelector(
                   context,
                 ),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.all(8),
-                  margin: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Color(0xFF121212),
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(12),
-                    ),
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        "How Many ?",
-                        style: GoogleFonts.raleway(
-                          textStyle: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                      MaterialButton(
-                        highlightColor: Colors.transparent,
-                        splashColor: Colors.transparent,
-                        onPressed: () {
-                          HapticFeedback.vibrate();
-                          setState(
-                            () {
-                              Get.defaultDialog(
-                                backgroundColor: Color(0xFF202020),
-                                radius: 8,
-                                titleStyle: GoogleFonts.raleway(
-                                  textStyle: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                title: "Select Number of Cryptos",
-                                buttonColor: Colors.white,
-                                content: NumSlider(),
-                                actions: [
-                                  IconButton(
-                                    onPressed: () {
-                                      Get.back();
-                                      setState(() {});
-                                    },
-                                    icon: Icon(
-                                      Icons.check_circle_outline_rounded,
-                                      color: Colors.green,
-                                      size: 32,
-                                    ),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        },
-                        child: Text(
-                          settingService.howMany!.toInt().toString(),
-                          style: GoogleFonts.antic(
-                            textStyle: TextStyle(
-                              color: Colors.white,
-                              fontSize: 32,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                coinSlider(
+                  context,
                 ),
-                Container(
-                  margin: EdgeInsets.all(8),
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Color(0xFF121212),
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(12),
-                    ),
-                  ),
-                  height: MediaQuery.of(context).size.height / 7,
-                  width: MediaQuery.of(context).size.width,
-                  child: Center(
-                    child: MaterialButton(
-                      highlightColor: Colors.transparent,
-                      splashColor: Colors.transparent,
-                      onPressed: () {
-                        Get.showSnackbar(
-                          GetBar(
-                            backgroundColor: Color(0xFF202020),
-                            message: "Really?",
-                            duration: Duration(seconds: 4),
-                            barBlur: 100,
-                            isDismissible: true,
-                            messageText: Center(
-                              child: Text(
-                                "Portfolio rakhne ki aukaat hai ?",
-                                style: GoogleFonts.raleway(
-                                  textStyle: TextStyle(),
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                      child: Text(
-                        "My Portfolio",
-                        style: GoogleFonts.raleway(
-                          textStyle: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                portfolioBtn(
+                  context,
                 ),
                 ProdiGinix(),
               ],
@@ -274,8 +160,188 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
     );
   }
+
+  Widget coinSlider(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      padding: EdgeInsets.all(8),
+      margin: EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: Color(0xFF121212),
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.all(
+          Radius.circular(12),
+        ),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text(
+            "How Many ?",
+            style: GoogleFonts.raleway(
+              textStyle: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+              ),
+            ),
+          ),
+          MaterialButton(
+            highlightColor: Colors.transparent,
+            splashColor: Colors.transparent,
+            onPressed: () {
+              HapticFeedback.vibrate();
+              setState(
+                () {
+                  Get.defaultDialog(
+                    backgroundColor: Color(0xFF202020),
+                    radius: 8,
+                    titleStyle: GoogleFonts.raleway(
+                      textStyle: TextStyle(
+                        fontSize: 12,
+                        color: Colors.white,
+                      ),
+                    ),
+                    title: "Select Number of Cryptos",
+                    buttonColor: Colors.white,
+                    content: circSlider(),
+                    actions: [
+                      IconButton(
+                        onPressed: () {
+                          Get.back();
+                          setState(() {});
+                        },
+                        icon: Icon(
+                          Icons.check_circle_outline_rounded,
+                          color: Colors.green,
+                          size: 32,
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+            child: Text(
+              settingService.howMany!.toInt().toString(),
+              style: GoogleFonts.antic(
+                textStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: 32,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget portfolioBtn(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(8),
+      padding: EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: Color(0xFF121212),
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.all(
+          Radius.circular(12),
+        ),
+      ),
+      height: MediaQuery.of(context).size.height / 7,
+      width: MediaQuery.of(context).size.width,
+      child: Center(
+        child: MaterialButton(
+          highlightColor: Colors.transparent,
+          splashColor: Colors.transparent,
+          onPressed: () {
+            Get.showSnackbar(
+              GetBar(
+                backgroundColor: Color(0xFF202020),
+                message: "Really?",
+                duration: Duration(seconds: 4),
+                barBlur: 100,
+                isDismissible: true,
+                messageText: Center(
+                  child: Text(
+                    "Portfolio rakhne ki aukaat hai ?",
+                    style: GoogleFonts.raleway(
+                      textStyle: TextStyle(),
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
+          child: Text(
+            "My Portfolio",
+            style: GoogleFonts.raleway(
+              textStyle: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
 
+class circSlider extends StatefulWidget {
+  circSlider({Key? key}) : super(key: key);
+
+  @override
+  _circSliderState createState() => _circSliderState();
+}
+
+class _circSliderState extends State<circSlider> {
+  @override
+  Widget build(BuildContext context) {
+    return SleekCircularSlider(
+      appearance: CircularSliderAppearance(
+        customColors: CustomSliderColors(
+          dynamicGradient: true,
+          progressBarColors: [
+            Colors.green.shade200,
+            Colors.green.shade500,
+            Colors.green.shade800,
+          ],
+          hideShadow: true,
+        ),
+        animationEnabled: true,
+      ),
+      onChange: (val) {
+        print(val.toInt());
+        settingService.howMany = val.toInt();
+      },
+      initialValue: settingService.howMany!.toDouble(),
+      min: 2.0,
+      max: 99.0,
+      innerWidget: (val) {
+        return innerSlider(context, val);
+      },
+    );
+  }
+
+  Widget innerSlider(BuildContext context, double val) {
+    return Center(
+      child: Text(
+        "${val.toInt()}",
+        style: GoogleFonts.raleway(
+          textStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// backup slider
 class NumSlider extends StatefulWidget {
   NumSlider({Key? key}) : super(key: key);
 
@@ -301,9 +367,11 @@ class _NumSliderState extends State<NumSlider> {
         label: "${settingService.howMany!.toStringAsFixed(0)}",
         onChanged: (val) {
           print(val.toInt());
-          setState(() {
-            settingService.howMany = val.toInt();
-          });
+          setState(
+            () {
+              settingService.howMany = val.toInt();
+            },
+          );
         },
       ),
     );

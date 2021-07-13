@@ -19,6 +19,7 @@ dependencies:
   http: ^0.13.3
   currency_picker: ^2.0.4
   google_fonts: ^2.1.0
+  sleek_circular_slider: ^2.0.1
 
 dev_dependencies:
   flutter_test:
