@@ -67,14 +67,14 @@ class _CoinCardState extends State<CoinCard> {
                 Expanded(
                   flex: 1,
                   child: Container(
-                    padding: EdgeInsets.all(4),
+                    padding: EdgeInsets.all(6),
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
                           color: Colors.white,
                         ),
                       ],
-                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
                     ),
                     child: Hero(
                       tag: "${widget.index}",

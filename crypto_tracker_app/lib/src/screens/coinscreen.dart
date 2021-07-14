@@ -1,5 +1,5 @@
 import 'package:crypto_tracker_app/src/model/coin.dart';
-import 'package:crypto_tracker_app/src/network/network.dart';
+import 'package:crypto_tracker_app/src/api/network.dart';
 import 'package:crypto_tracker_app/src/screens/settingscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -68,6 +68,8 @@ class _CoinPageState extends State<CoinPage> {
             await fetchCoinData();
             setState(() {});
           },
+          backgroundColor: Color(0xFF202020),
+          color: Colors.deepOrange,
           triggerMode: RefreshIndicatorTriggerMode.onEdge,
           child: Container(
             color: Color(0xFF121212),

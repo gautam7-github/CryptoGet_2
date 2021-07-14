@@ -1,4 +1,4 @@
-import 'package:crypto_tracker_app/src/network/network.dart';
+import 'package:crypto_tracker_app/src/api/network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -15,11 +15,11 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   void getCoinData() async {
     await fetchCoinData();
-    meow();
+    goNext();
     //setState(() {});
   }
 
-  void meow() {
+  void goNext() {
     Future.delayed(
       Duration(milliseconds: 300),
       () {
@@ -74,7 +74,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ),
                 ),
                 Spacer(
-                  flex: 2,
+                  flex: 1,
+                ),
+                Center(
+                  child: Image(
+                    image: AssetImage(
+                      "assets/splashImg.png",
+                    ),
+                    height: MediaQuery.of(context).size.height / 3,
+                  ),
+                ),
+                Spacer(
+                  flex: 1,
                 ),
                 RichText(
                   text: TextSpan(

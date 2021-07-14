@@ -1,6 +1,7 @@
 import 'package:crypto_tracker_app/src/model/credits.dart';
 import 'package:crypto_tracker_app/src/model/settings.dart';
-import 'package:crypto_tracker_app/src/network/network.dart';
+import 'package:crypto_tracker_app/src/api/network.dart';
+import 'package:crypto_tracker_app/src/screens/portfolioscreen.dart';
 import 'package:currency_picker/currency_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -222,12 +223,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 },
               );
             },
-            child: Text(
-              settingService.howMany!.toInt().toString(),
-              style: GoogleFonts.antic(
-                textStyle: TextStyle(
-                  color: Colors.white,
-                  fontSize: 32,
+            child: Hero(
+              tag: "howMany",
+              child: Text(
+                settingService.howMany!.toInt().toString(),
+                style: GoogleFonts.antic(
+                  textStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: 32,
+                  ),
                 ),
               ),
             ),
@@ -254,9 +258,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
         child: MaterialButton(
           highlightColor: Colors.transparent,
           splashColor: Colors.transparent,
-          onPressed: () {
-            Get.showSnackbar(
+          onPressed: () async {
+            HapticFeedback.vibrate();
+            await Get.showSnackbar(
               GetBar(
+                mainButton: TextButton(
+                  onPressed: () {
+                    Get.to(
+                      portfolioScreen(),
+                      transition: Transition.cupertino,
+                    );
+                  },
+                  child: Text(
+                    "Hai!!",
+                    style: GoogleFonts.raleway(
+                      textStyle: TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
                 backgroundColor: Color(0xFF202020),
                 message: "Really?",
                 duration: Duration(seconds: 4),
@@ -301,13 +323,16 @@ class _circSliderState extends State<circSlider> {
   Widget build(BuildContext context) {
     return SleekCircularSlider(
       appearance: CircularSliderAppearance(
+        animDurationMultiplier: 0.9,
         customColors: CustomSliderColors(
           dynamicGradient: true,
+          dotColor: Colors.white,
           progressBarColors: [
-            Colors.green.shade200,
-            Colors.green.shade500,
-            Colors.green.shade800,
+            Color(0xFF35A669),
+            Color(0xFF39A63F),
+            Color(0xFF3E7470),
           ],
+          // #35A669 , #39A63F , #3E7470
           hideShadow: true,
         ),
         animationEnabled: true,
@@ -317,23 +342,26 @@ class _circSliderState extends State<circSlider> {
         settingService.howMany = val.toInt();
       },
       initialValue: settingService.howMany!.toDouble(),
-      min: 2.0,
-      max: 99.0,
+      min: 3.0,
+      max: 100.0,
       innerWidget: (val) {
-        return innerSlider(context, val);
+        return innerSliderWidget(context, val);
       },
     );
   }
 
-  Widget innerSlider(BuildContext context, double val) {
+  Widget innerSliderWidget(BuildContext context, double val) {
     return Center(
-      child: Text(
-        "${val.toInt()}",
-        style: GoogleFonts.raleway(
-          textStyle: TextStyle(
-            color: Colors.white,
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
+      child: Hero(
+        tag: "howMany",
+        child: Text(
+          "${val.toInt()}",
+          style: GoogleFonts.raleway(
+            textStyle: TextStyle(
+              color: Colors.white,
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),
