@@ -62,4 +62,3 @@ class Coin {
 }
 
 List<Coin> coinList = [];
-
