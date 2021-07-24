@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:url_strategy/url_strategy.dart';
 
-void main(List<String> args) {
+void main() {
 // flutter run -d chrome --web-renderer html // to run the app
 // flutter build web --web-renderer html --release // to generate a production build
   setPathUrlStrategy();
