@@ -139,7 +139,7 @@ class webFullScreen extends StatelessWidget {
               "CMP",
               style: GoogleFonts.openSans(
                 textStyle: TextStyle(
-                  fontSize: (MediaQuery.of(context).size.width / 10),
+                  fontSize: (MediaQuery.of(context).size.width / 15),
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -148,7 +148,7 @@ class webFullScreen extends StatelessWidget {
             Text(
               "${coinList[index].currentPrice!.toStringAsFixed(2)}",
               style: TextStyle(
-                fontSize: (MediaQuery.of(context).size.width / 10),
+                fontSize: (MediaQuery.of(context).size.width / 12),
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -196,7 +196,7 @@ class webFullScreen extends StatelessWidget {
                   Text(
                     "(${coinList[index].priceChangePercentage24h!.toStringAsFixed(2)}%)",
                     style: TextStyle(
-                      fontSize: (MediaQuery.of(context).size.width / 12),
+                      fontSize: (MediaQuery.of(context).size.width / 15),
                       fontWeight: FontWeight.w200,
                       color: (coinList[index]
                                   .priceChangePercentage24h!
@@ -222,7 +222,7 @@ class webFullScreen extends StatelessWidget {
           Text(
             "Today's Range",
             style: TextStyle(
-              fontSize: (MediaQuery.of(context).size.width / 14),
+              fontSize: (MediaQuery.of(context).size.width / 16),
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
@@ -235,7 +235,7 @@ class webFullScreen extends StatelessWidget {
                 coinList[index].high24h.toString(),
                 style: TextStyle(
                   color: Colors.green,
-                  fontSize: (MediaQuery.of(context).size.width / 10),
+                  fontSize: (MediaQuery.of(context).size.width / 12),
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -251,7 +251,7 @@ class webFullScreen extends StatelessWidget {
                 coinList[index].low24h.toString(),
                 style: TextStyle(
                   color: Colors.red,
-                  fontSize: (MediaQuery.of(context).size.width / 10),
+                  fontSize: (MediaQuery.of(context).size.width / 12),
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -269,7 +269,7 @@ class webFullScreen extends StatelessWidget {
           Text(
             "Market Cap",
             style: TextStyle(
-              fontSize: (MediaQuery.of(context).size.width / 14),
+              fontSize: (MediaQuery.of(context).size.width / 18),
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
@@ -277,7 +277,7 @@ class webFullScreen extends StatelessWidget {
           Text(
             "${coinList[index].marketCap!.toStringAsFixed(2)}",
             style: TextStyle(
-              fontSize: (MediaQuery.of(context).size.width / 14),
+              fontSize: (MediaQuery.of(context).size.width / 18),
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),

@@ -13,7 +13,7 @@ class Settings {
     'gecko_desc': 'Curated',
   };
 
-  NumberFormat numberFormat = NumberFormat.decimalPattern('hi');
+  NumberFormat numberFormatter = NumberFormat.decimalPattern('hi');
 }
 
 // market_cap_desc, gecko_desc, gecko_asc, market_cap_asc, market_cap_desc, volume_asc, volume_desc

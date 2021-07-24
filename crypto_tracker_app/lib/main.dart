@@ -2,8 +2,12 @@ import 'package:crypto_tracker_app/src/screens/welcomescreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 void main(List<String> args) {
+// flutter run -d chrome --web-renderer html // to run the app
+// flutter build web --web-renderer html --release // to generate a production build
+  setPathUrlStrategy();
   runApp(CryptoApp());
 }
 
