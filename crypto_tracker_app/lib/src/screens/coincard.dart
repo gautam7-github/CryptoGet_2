@@ -1,9 +1,11 @@
 import 'package:crypto_tracker_app/src/model/coin.dart';
 import 'package:crypto_tracker_app/src/model/settings.dart';
+import 'package:crypto_tracker_app/src/screens/web-fullscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'fullpagecard.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class CoinCard extends StatefulWidget {
   final index;
@@ -28,8 +30,13 @@ class _CoinCardState extends State<CoinCard> {
           context,
           CupertinoPageRoute(
             maintainState: true,
-            builder: (BuildContext context) =>
-                FullPageCard(index: widget.index),
+            builder: (BuildContext context) => kIsWeb
+                ? webFullScreen(
+                    index: widget.index,
+                  )
+                : FullPageCard(
+                    index: widget.index,
+                  ),
           ),
         );
       },
@@ -59,7 +66,7 @@ class _CoinCardState extends State<CoinCard> {
             border: Border.all(color: Colors.grey.shade600),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(6.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,

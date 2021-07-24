@@ -20,6 +20,7 @@ dependencies:
   currency_picker: ^2.0.4
   google_fonts: ^2.1.0
   sleek_circular_slider: ^2.0.1
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
