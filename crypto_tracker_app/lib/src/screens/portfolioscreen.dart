@@ -16,7 +16,7 @@ class _portfolioScreenState extends State<portfolioScreen> {
       body: SafeArea(
         child: Center(
           child: Text(
-            "Dubara check krr, pakka nhi hogi...",
+            "+ Click to Add",
             style: GoogleFonts.raleway(
               textStyle: TextStyle(
                 color: Colors.white,

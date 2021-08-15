@@ -1,5 +1,3 @@
-import 'package:intl/intl.dart';
-
 class Settings {
   String? currency = "INR";
   String? symbol = "₹";
@@ -12,9 +10,8 @@ class Settings {
     'volume_asc': 'Volume Asce',
     'gecko_desc': 'Curated',
   };
-
-  NumberFormat numberFormatter = NumberFormat.decimalPattern('hi');
 }
+// https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=inr
 
 // market_cap_desc, gecko_desc, gecko_asc, market_cap_asc, market_cap_desc, volume_asc, volume_desc
 Settings settingService = Settings();

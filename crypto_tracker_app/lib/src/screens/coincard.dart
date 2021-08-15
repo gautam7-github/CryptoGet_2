@@ -47,13 +47,13 @@ class _CoinCardState extends State<CoinCard> {
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                color: Colors.white,
+                color: Color(0xFF6C72CB),
                 offset: Offset(-1, -1),
                 blurRadius: 1,
                 spreadRadius: 1,
               ),
               BoxShadow(
-                color: Colors.grey.shade500,
+                color: Color(0xFFCB69C1),
                 offset: Offset(1, 1),
                 blurRadius: 1,
                 spreadRadius: 1,
@@ -63,7 +63,9 @@ class _CoinCardState extends State<CoinCard> {
             borderRadius: BorderRadius.all(
               Radius.circular(12),
             ),
-            border: Border.all(color: Colors.grey.shade600),
+            border: Border.all(
+              color: Color(0xFF6C72CB),
+            ),
           ),
           child: Padding(
             padding: const EdgeInsets.all(6.0),

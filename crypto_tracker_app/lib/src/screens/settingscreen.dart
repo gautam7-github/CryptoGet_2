@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -53,6 +54,37 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 portfolioBtn(
                   context,
+                ),
+                Container(
+                  margin: EdgeInsets.all(8),
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Color(0xFF121212),
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(12),
+                    ),
+                  ),
+                  height: MediaQuery.of(context).size.height / 7,
+                  width: MediaQuery.of(context).size.width,
+                  child: Center(
+                    child: MaterialButton(
+                      highlightColor: Colors.transparent,
+                      splashColor: Colors.transparent,
+                      onPressed: () {
+                        HapticFeedback.vibrate();
+                      },
+                      child: Text(
+                        "Recommendations",
+                        style: GoogleFonts.raleway(
+                          textStyle: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
                 ProdiGinix(),
               ],
@@ -205,17 +237,32 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     title: "Select Number of Cryptos",
                     buttonColor: Colors.white,
-                    content: circSlider(),
+                    content: kIsWeb ? NumSlider() : circSlider(),
                     actions: [
-                      IconButton(
+                      MaterialButton(
                         onPressed: () {
                           Get.back();
                           setState(() {});
                         },
-                        icon: Icon(
-                          Icons.check_circle_outline_rounded,
-                          color: Colors.green,
-                          size: 32,
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Confirm",
+                              style: GoogleFonts.raleway(
+                                textStyle: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            Icon(
+                              Icons.check_circle_outline_rounded,
+                              color: Colors.green,
+                              size: kIsWeb ? 26 : 32,
+                            ),
+                          ],
                         ),
                       ),
                     ],

@@ -69,9 +69,9 @@ class webFullScreen extends StatelessWidget {
 
   Widget coinImageCard(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(18.0),
+      padding: const EdgeInsets.all(16.0),
       child: Container(
-        height: MediaQuery.of(context).size.height / 5,
+        height: MediaQuery.of(context).size.height / 3,
         padding: EdgeInsets.all(4),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -82,7 +82,7 @@ class webFullScreen extends StatelessWidget {
           child: Image.network(
             coinList[index].image.toString(),
             filterQuality: FilterQuality.high,
-            scale: 1.3,
+            scale: 1.9,
             isAntiAlias: true,
           ),
         ),
@@ -146,7 +146,7 @@ class webFullScreen extends StatelessWidget {
               ),
             ),
             Text(
-              "${coinList[index].currentPrice!.toStringAsFixed(2)}",
+              "${coinList[index].currentPrice!.toStringAsFixed(3)}",
               style: TextStyle(
                 fontSize: (MediaQuery.of(context).size.width / 12),
                 fontWeight: FontWeight.bold,

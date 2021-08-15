@@ -15,8 +15,10 @@ class CoinPage extends StatefulWidget {
 }
 
 class _CoinPageState extends State<CoinPage> {
+  late ScrollController scontr;
   @override
   void initState() {
+    scontr = ScrollController();
     super.initState();
   }
 
@@ -36,6 +38,11 @@ class _CoinPageState extends State<CoinPage> {
         actions: [
           IconButton(
             onPressed: () async {
+              await scontr.animateTo(
+                scontr.position.minScrollExtent,
+                duration: Duration(seconds: 1),
+                curve: Curves.fastOutSlowIn,
+              );
               await fetchCoinData();
               setState(() {});
             },
@@ -46,6 +53,11 @@ class _CoinPageState extends State<CoinPage> {
           ),
           IconButton(
             onPressed: () async {
+              await scontr.animateTo(
+                scontr.position.minScrollExtent,
+                duration: Duration(seconds: 1),
+                curve: Curves.fastOutSlowIn,
+              );
               Get.to(
                 () => SettingsScreen(),
               );
@@ -68,12 +80,13 @@ class _CoinPageState extends State<CoinPage> {
             await fetchCoinData();
             setState(() {});
           },
-          backgroundColor: Color(0xFF202020),
+          backgroundColor: Color(0xFF17181F),
           color: Colors.deepOrange,
           triggerMode: RefreshIndicatorTriggerMode.onEdge,
           child: Container(
-            color: Color(0xFF121212),
+            color: Color(0xFF17181F),
             child: ListView.builder(
+              controller: scontr,
               physics: BouncingScrollPhysics(),
               padding: EdgeInsets.all(12),
               scrollDirection: Axis.vertical,
