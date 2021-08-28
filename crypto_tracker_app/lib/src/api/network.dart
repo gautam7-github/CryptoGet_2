@@ -27,3 +27,10 @@ Future<List<Coin>> fetchCoinData() async {
   }
   // market_cap_desc, gecko_desc, gecko_asc, market_cap_asc, market_cap_desc, volume_asc, volume_desc
 }
+
+Future<dynamic> fetchRecommends() async {
+  final response = await http.get(Uri.parse(
+      "https://cryptoget.gautam777.repl.co/28637283/crypto/recommend"));
+  var data = json.decode(response.body)["recommended"];
+  return data;
+}

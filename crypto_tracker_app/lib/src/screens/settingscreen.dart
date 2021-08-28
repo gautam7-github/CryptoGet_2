@@ -2,6 +2,7 @@ import 'package:crypto_tracker_app/src/model/credits.dart';
 import 'package:crypto_tracker_app/src/model/settings.dart';
 import 'package:crypto_tracker_app/src/api/network.dart';
 import 'package:crypto_tracker_app/src/screens/portfolioscreen.dart';
+import 'package:crypto_tracker_app/src/screens/recommedscreen.dart';
 import 'package:currency_picker/currency_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -55,37 +56,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 portfolioBtn(
                   context,
                 ),
-                Container(
-                  margin: EdgeInsets.all(8),
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Color(0xFF121212),
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(12),
-                    ),
-                  ),
-                  height: MediaQuery.of(context).size.height / 7,
-                  width: MediaQuery.of(context).size.width,
-                  child: Center(
-                    child: MaterialButton(
-                      highlightColor: Colors.transparent,
-                      splashColor: Colors.transparent,
-                      onPressed: () {
-                        HapticFeedback.vibrate();
-                      },
-                      child: Text(
-                        "Recommendations",
-                        style: GoogleFonts.raleway(
-                          textStyle: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                recommedBtn(context),
                 ProdiGinix(),
               ],
             ),
@@ -345,6 +316,48 @@ class _SettingsScreenState extends State<SettingsScreen> {
           },
           child: Text(
             "My Portfolio",
+            style: GoogleFonts.raleway(
+              textStyle: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget recommedBtn(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(8),
+      padding: EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: Color(0xFF121212),
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.all(
+          Radius.circular(12),
+        ),
+      ),
+      height: MediaQuery.of(context).size.height / 7,
+      width: MediaQuery.of(context).size.width,
+      child: Center(
+        child: MaterialButton(
+          highlightColor: Colors.transparent,
+          splashColor: Colors.transparent,
+          onPressed: () async {
+            HapticFeedback.vibrate();
+            var rData = await fetchRecommends();
+            print(rData);
+            Get.to(
+              () => RecommendationScreen(
+                data: rData,
+              ),
+              transition: Transition.cupertino,
+            );
+          },
+          child: Text(
+            "Recommendations",
             style: GoogleFonts.raleway(
               textStyle: TextStyle(
                 color: Colors.white,

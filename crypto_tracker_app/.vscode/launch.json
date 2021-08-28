@@ -16,11 +16,11 @@
             "flutterMode": "debug"
         },
         {
-            "name": "crypto_tracker_app (profile mode)",
+            "name": "crypto_tracker_app (debug mode)",
             "cwd": "crypto_tracker_app",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "flutterMode": "debug"
         }
     ]
 }

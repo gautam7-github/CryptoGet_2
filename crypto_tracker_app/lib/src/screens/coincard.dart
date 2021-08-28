@@ -108,14 +108,14 @@ class _CoinCardState extends State<CoinCard> {
                           coinList[widget.index].name.toString(),
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 18,
+                            fontSize: kIsWeb ? 32 : 18,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
                           "${coinList[widget.index].symbol.toString().toUpperCase()} / ${settingService.currency!.toUpperCase()}",
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: kIsWeb ? 28 : 14,
                             fontWeight: FontWeight.w300,
                             color: Colors.white,
                           ),
@@ -133,7 +133,7 @@ class _CoinCardState extends State<CoinCard> {
                           .toStringAsFixed(2),
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 16,
+                        fontSize: kIsWeb ? 32 : 16,
                         fontWeight: FontWeight.w900,
                       ),
                     ),
