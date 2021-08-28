@@ -272,48 +272,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       height: MediaQuery.of(context).size.height / 7,
       width: MediaQuery.of(context).size.width,
-      child: Center(
-        child: MaterialButton(
-          highlightColor: Colors.transparent,
-          splashColor: Colors.transparent,
-          onPressed: () async {
-            HapticFeedback.vibrate();
-            await Get.showSnackbar(
-              GetBar(
-                mainButton: TextButton(
-                  onPressed: () {
-                    Get.to(
-                      portfolioScreen(),
-                      transition: Transition.cupertino,
-                    );
-                  },
-                  child: Text(
-                    "Hai!!",
-                    style: GoogleFonts.raleway(
-                      textStyle: TextStyle(
-                        color: Colors.green,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                backgroundColor: Color(0xFF202020),
-                message: "Really?",
-                duration: Duration(seconds: 4),
-                barBlur: 100,
-                isDismissible: true,
-                messageText: Center(
-                  child: Text(
-                    "Portfolio rakhne ki aukaat hai ?",
-                    style: GoogleFonts.raleway(
-                      textStyle: TextStyle(),
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
+      child: MaterialButton(
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent,
+        onPressed: () async {
+          HapticFeedback.vibrate();
+          Get.to(
+            portfolioScreen(),
+            transition: Transition.cupertino,
+          );
+        },
+        child: Center(
           child: Text(
             "My Portfolio",
             style: GoogleFonts.raleway(
@@ -341,21 +310,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       height: MediaQuery.of(context).size.height / 7,
       width: MediaQuery.of(context).size.width,
-      child: Center(
-        child: MaterialButton(
-          highlightColor: Colors.transparent,
-          splashColor: Colors.transparent,
-          onPressed: () async {
-            HapticFeedback.vibrate();
-            var rData = await fetchRecommends();
-            print(rData);
-            Get.to(
-              () => RecommendationScreen(
-                data: rData,
-              ),
-              transition: Transition.cupertino,
-            );
-          },
+      child: MaterialButton(
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent,
+        onPressed: () async {
+          HapticFeedback.vibrate();
+          var rData = await fetchRecommends();
+          print(rData);
+          Get.to(
+            () => RecommendationScreen(
+              data: rData,
+            ),
+            transition: Transition.cupertino,
+          );
+        },
+        child: Center(
           child: Text(
             "Recommendations",
             style: GoogleFonts.raleway(
@@ -464,4 +433,41 @@ class _NumSliderState extends State<NumSlider> {
       ),
     );
   }
+}
+
+// hell below
+// dont go
+// please !!!!!
+
+void hellCode() {
+  Get.showSnackbar(
+    GetBar(
+      mainButton: TextButton(
+        onPressed: () {},
+        child: Text(
+          "Hai!!",
+          style: GoogleFonts.raleway(
+            textStyle: TextStyle(
+              color: Colors.green,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ),
+      backgroundColor: Color(0xFF202020),
+      message: "Really?",
+      duration: Duration(seconds: 4),
+      barBlur: 100,
+      isDismissible: true,
+      messageText: Center(
+        child: Text(
+          "Portfolio rakhne ki aukaat hai ?",
+          style: GoogleFonts.raleway(
+            textStyle: TextStyle(),
+            color: Colors.white,
+          ),
+        ),
+      ),
+    ),
+  );
 }
