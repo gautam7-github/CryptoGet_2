@@ -56,7 +56,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 portfolioBtn(
                   context,
                 ),
-                recommedBtn(context),
+                recommedBtn(
+                  context,
+                ),
                 ProdiGinix(),
               ],
             ),

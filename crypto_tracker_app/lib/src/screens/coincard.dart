@@ -89,8 +89,6 @@ class _CoinCardState extends State<CoinCard> {
                       tag: "${widget.index}",
                       child: Image.network(
                         coinList[widget.index].image.toString(),
-                        fit: BoxFit.scaleDown,
-                        scale: 0.7,
                         isAntiAlias: true,
                       ),
                     ),

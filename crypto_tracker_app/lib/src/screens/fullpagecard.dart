@@ -70,15 +70,17 @@ class FullPageCard extends StatelessWidget {
       padding: const EdgeInsets.all(18.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
-          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.white,
+            ),
+          ],
+          borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
         child: Hero(
           tag: "$index",
           child: Image.network(
             coinList[index].image.toString(),
-            filterQuality: FilterQuality.high,
-            scale: 1.3,
             isAntiAlias: true,
           ),
         ),

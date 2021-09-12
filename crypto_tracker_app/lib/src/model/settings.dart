@@ -4,9 +4,9 @@ class Settings {
   String? sortBy = "market_cap_desc";
   int? howMany = 25;
   Map<String, String> orderBy = {
-    'market_cap_dec': 'Market Cap Desc',
+    'market_cap_desc': 'Market Cap Desc',
     'market_cap_asc': 'Market Cap Asce',
-    'volume_dec': 'Volume Desc',
+    'volume_desc': 'Volume Desc',
     'volume_asc': 'Volume Asce',
     'gecko_desc': 'Curated',
   };
